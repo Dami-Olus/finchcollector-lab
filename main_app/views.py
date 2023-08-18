@@ -67,6 +67,11 @@ def assoc_tag(request, finch_id, tag_id):
   Finch.objects.get(id=finch_id).tags.add(tag_id)
   return redirect('detail', finch_id=finch_id)
 
+def unassoc_tag(request, finch_id, tag_id):
+  # Note that you can pass a toy's id instead of the whole toy object
+  Finch.objects.get(id=finch_id).tags.remove(tag_id)
+  return redirect('detail', finch_id=finch_id)
+
 class TagList(ListView):
     model = Tag
 
