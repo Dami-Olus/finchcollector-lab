@@ -17,8 +17,8 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
     
-    # def get_absolute_url(self):
-    #     return reverse('toys_details', kwargs={'pk': self.id})
+    def get_absolute_url(self):
+        return reverse('tags_detail', kwargs={'pk': self.id})
 
 # Create your models here.
 class Finch(models.Model):
@@ -26,7 +26,7 @@ class Finch(models.Model):
     color = models.CharField(max_length=100)
     description = models.TextField(max_length=250)
     spotted = models.IntegerField()
-    toys = models.ManyToManyField(Tag)
+    tags = models.ManyToManyField(Tag)
 
     def __str__(self):
         return f'{self.species} ({self.id})'

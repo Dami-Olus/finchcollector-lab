@@ -60,6 +60,9 @@ def add_feeding(request, finch_id):
 class TagList(ListView):
     model = Tag
 
+class TagDetail(DetailView):
+    model = Tag
+
 class TagCreate(CreateView):
     model = Tag
     fields = '__all__'

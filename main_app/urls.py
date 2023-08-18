@@ -11,6 +11,7 @@ urlpatterns = [
   path('finches/<int:pk>/delete/', views.FinchDelete.as_view(), name='finches_delete'),
   path('finches/<int:finch_id>/add_feeding/', views.add_feeding, name='add_feeding'),
   path('tags/', views.TagList.as_view(), name='tags_index'),
+  path('tags/<int:pk>', views.TagDetail.as_view(), name='tags_detail'),
   path('tags/create/', views.TagCreate.as_view(), name='tags_create'),
   path('tags/<int:pk>/update/', views.TagUpdate.as_view(), name='tags_update'),
   path('tags/<int:pk>/delete/', views.TagDelete.as_view(), name='tags_delete')
