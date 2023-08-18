@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
-from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView, ListView
 
-from .models import Finch
+from .models import Finch, Tag
 from .forms import FeedingForm
 
 # finches = [
@@ -55,3 +55,18 @@ def add_feeding(request, finch_id):
     new_feeding.finch_id = finch_id
     new_feeding.save()
   return redirect('detail', finch_id=finch_id)
+
+class TagList(ListView):
+    model = Tag
+
+class TagCreate(CreateView):
+    model = Tag
+    fields = '__all__'
+
+class TagUpdate(UpdateView):
+    model = Tag
+    fields = '__all__'
+
+class TagDelete(DeleteView):
+    model = Tag
+    success_url = '/tags'
