@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 from .models import Finch
 
@@ -33,3 +33,10 @@ class FinchCreate(CreateView):
     fields = '__all__'
 
 
+class FinchUpdate(UpdateView):
+    model = Finch
+    fields = ['color', 'description', 'spotted']
+
+class FinchDelete(DeleteView):
+    model = Finch
+    success_url = '/cats'
