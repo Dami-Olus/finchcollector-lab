@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 
 from .models import Finch
+from .forms import FeedingForm
 
 # finches = [
 #     {'species': 'House Finch', 'color': 'red', 'description': 'The house finch is a bird in the finch family Fringillidae. It is native to western North America and has been introduced to the eastern half of the continent and Hawaii.', 'spotted': 2 },
@@ -24,8 +25,9 @@ def finches_index(request):
 
 def finches_detail(request, finch_id):
     finch = Finch.objects.get(id=finch_id)
+    feeding_form = FeedingForm()
     return render(request, 'finches/detail.html', {
-        'finch': finch
+        'finch': finch, 'feeding_form': feeding_form
     })
 
 class FinchCreate(CreateView):
@@ -39,4 +41,4 @@ class FinchUpdate(UpdateView):
 
 class FinchDelete(DeleteView):
     model = Finch
-    success_url = '/cats'
+    success_url = '/finches'
