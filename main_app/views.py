@@ -26,9 +26,14 @@ def finches_index(request):
 
 def finches_detail(request, finch_id):
     finch = Finch.objects.get(id=finch_id)
+    # get ids of tags associated with a finch
+    id_list = finch.tags.all().values_list('id')
+    # get ids of tags whose ids are not in the list
+    tags_finch_doesnt_have = Tag.objects.exclude(id__in=id_list)
     feeding_form = FeedingForm()
     return render(request, 'finches/detail.html', {
-        'finch': finch, 'feeding_form': feeding_form
+        'finch': finch, 'feeding_form': feeding_form,
+        'tags': tags_finch_doesnt_have
     })
 
 class FinchCreate(CreateView):
