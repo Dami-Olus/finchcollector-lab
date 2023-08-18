@@ -62,6 +62,11 @@ def add_feeding(request, finch_id):
     new_feeding.save()
   return redirect('detail', finch_id=finch_id)
 
+def assoc_tag(request, finch_id, tag_id):
+  # Note that you can pass a toy's id instead of the whole toy object
+  Finch.objects.get(id=finch_id).tags.add(tag_id)
+  return redirect('detail', finch_id=finch_id)
+
 class TagList(ListView):
     model = Tag
 
