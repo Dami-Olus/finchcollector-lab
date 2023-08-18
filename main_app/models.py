@@ -26,7 +26,7 @@ class Finch(models.Model):
     color = models.CharField(max_length=100)
     description = models.TextField(max_length=250)
     spotted = models.IntegerField()
-    toys = models.ManyToManyField(Toy)
+    toys = models.ManyToManyField(Tag)
 
     def __str__(self):
         return f'{self.species} ({self.id})'
